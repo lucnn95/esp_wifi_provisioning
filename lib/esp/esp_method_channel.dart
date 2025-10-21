@@ -87,17 +87,12 @@ class MethodChannelEsp extends EspPlatform {
     String? password,
   }) async {
     try {
-      final wifiPassword = password ?? '';
-
-      if (network.security != EspWifiSecurity.WIFI_OPEN && wifiPassword.isEmpty) {
-        throw ErrorDescription('Password is required to connect wifi network.');
-      }
-
-      final result = await methodChannel.invokeMethod<bool>('provisionWifiNetwork', {
-            'ssid': network.ssid,
-            'password': wifiPassword,
-          }) ??
-          false;
+      final result =
+          await methodChannel.invokeMethod<bool>('provisionWifiNetwork', {
+                'ssid': network.ssid,
+                'password': password,
+              }) ??
+              false;
 
       return result;
     } on PlatformException catch (e) {

@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 enum EspWifiSecurity {
   WIFI_OPEN,
   WIFI_WEP,
@@ -11,13 +13,13 @@ enum EspWifiSecurity {
 
 class EspWifiNetwork {
   final String name;
-  final int rssi;
-  final EspWifiSecurity security;
+  int? rssi;
+  EspWifiSecurity? security;
 
   EspWifiNetwork({
     required this.name,
-    required this.rssi,
-    required this.security,
+    this.rssi,
+    this.security,
   });
 
   String get ssid => name;
